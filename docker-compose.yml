@@ -13,6 +13,10 @@ services:
       - DB_PASSWORD=camunda
       - WAIT_FOR=db:5432
       - WAIT_FOR_TIMEOUT=60
+      - DEBUG=true
+    volumes:
+      - ./manager-context.xml:/camunda/webapps/manager/META-INF/context.xml
+      - ./tomcat-users.xml:/camunda/conf/tomcat-users.xml
   db:
     image: postgres
     environment:
