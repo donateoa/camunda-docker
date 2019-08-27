@@ -7,20 +7,16 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DB_DRIVER=org.postgresql.Driver
-      DB_URL=jdbc:postgresql://db:5432/process-engine
-      DB_USERNAME=camunda
-      DB_PASSWORD=camunda
-      WAIT_FOR=db:5432
-      WAIT_FOR_TIMEOUT=60
+      - DB_DRIVER=org.postgresql.Driver
+      - DB_URL=jdbc:postgresql://db:5432/camunda
+      - DB_USERNAME=camunda
+      - DB_PASSWORD=camunda
+      - WAIT_FOR=db:5432
+      - WAIT_FOR_TIMEOUT=60
   db:
-    image: postgresql:10.4
-    command: --default-authentication-plugin=mysql_native_password
-    image: postgres:10.4
-        # volumes:
-        #     - ~/volumes/jhipster/widerpoker/postgresql/:/var/lib/postgresql/data/
-        environment:
-            - POSTGRES_USER=camunda
-            - POSTGRES_PASSWORD=camunda
-        ports:
-            - 5432:5432
+    image: postgres
+    environment:
+        - POSTGRES_USER=camunda
+        - POSTGRES_PASSWORD=camunda
+    ports:
+        - 5432:5432
